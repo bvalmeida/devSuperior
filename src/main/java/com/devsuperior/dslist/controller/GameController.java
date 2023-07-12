@@ -1,7 +1,6 @@
 package com.devsuperior.dslist.controller;
 
 import com.devsuperior.dslist.dto.GameMinDTO;
-import com.devsuperior.dslist.entity.Game;
 import com.devsuperior.dslist.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
