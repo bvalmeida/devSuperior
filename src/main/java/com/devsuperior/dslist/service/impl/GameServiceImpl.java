@@ -3,6 +3,7 @@ package com.devsuperior.dslist.service.impl;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entity.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repository.GameRepository;
 import com.devsuperior.dslist.service.GameService;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,12 @@ public class GameServiceImpl implements GameService {
         }catch (Exception e){
             throw new RuntimeException("Algum error ocorreu ao buscar o Game por ID {} " + id);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId) {
+        List<GameMinProjection> gameMinProjectionList = gameRepository.searchGameList(listId);
+        return gameMinProjectionList.stream().map(gameMinProjection -> new GameMinDTO(gameMinProjection)).toList();
     }
 }
